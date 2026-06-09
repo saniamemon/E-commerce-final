@@ -168,15 +168,15 @@ const AdminProducts = () => {
     };
 
     return (
-        <div className="p-8">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold">
+        <div className="p-4 sm:p-6 md:p-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+                <h1 className="text-2xl sm:text-3xl font-bold text-center sm:text-left">
                     Admin Products
                 </h1>
 
                 <button
                     onClick={() => setShowAddModal(true)}
-                    className="bg-green-600 text-white px-4 py-2 rounded"
+                    className="bg-green-600 text-white px-4 py-2 rounded w-full sm:w-auto"
                 >
                     + Add Product
                 </button>
@@ -189,18 +189,18 @@ const AdminProducts = () => {
                         key={p._id}
                         className="border rounded-lg p-4 shadow bg-white"
                     >
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-col sm:flex-row items-center gap-4">
 
                             {p.image && (
                                 <img
-                                    src={`http://localhost:5000/uploads/${p.image}`}
+                                    src={`https://e-commerce-final-7ocn.onrender.com/uploads/${p.image}`}
                                     alt={p.title}
                                     // className="w-24 h-24 object-cover rounded"
-                                    className="w-24 h-24 object-contain bg-gray-100 rounded"
+                                    className="w-20 h-20 sm:w-24 sm:h-24 object-contain bg-gray-100 rounded"
                                 />
                             )}
 
-                            <div className="flex-1">
+                            <div className="flex-1 text-center sm:text-left">
                                 <h2 className="font-bold text-lg">
                                     {p.title}
                                 </h2>
@@ -209,21 +209,21 @@ const AdminProducts = () => {
 
                                 <p>Stock: {p.stock}</p>
                             </div>
+                            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                                <button
+                                    onClick={() => handleEdit(p)}
+                                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                                >
+                                    Edit
+                                </button>
 
-                            <button
-                                onClick={() => handleEdit(p)}
-                                className="bg-blue-500 text-white px-4 py-2 rounded"
-                            >
-                                Edit
-                            </button>
-
-                            <button
-                                onClick={() => handleDelete(p._id)}
-                                className="bg-red-500 text-white px-4 py-2 rounded"
-                            >
-                                Delete
-                            </button>
-
+                                <button
+                                    onClick={() => handleDelete(p._id)}
+                                    className="bg-red-500 text-white px-4 py-2 rounded"
+                                >
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -233,7 +233,7 @@ const AdminProducts = () => {
             {editingProduct && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
 
-                    <div className="bg-white p-6 rounded-lg w-[500px]">
+                  <div className="bg-white p-4 sm:p-6 rounded-lg w-[95%] sm:w-[500px] max-h-[90vh] overflow-y-auto">
 
                         <h2 className="text-2xl font-bold mb-4">
                             Editing: {editingProduct.title}
@@ -281,7 +281,7 @@ const AdminProducts = () => {
 
                             {editingProduct.image && (
                                 <img
-                                    src={`http://localhost:5000/uploads/${editingProduct.image}`}
+                                    src={`https://e-commerce-final-7ocn.onrender.com/uploads/${editingProduct.image}`}
                                     alt="Current"
                                     className="w-24 h-24 object-cover rounded border"
                                 />
@@ -315,18 +315,18 @@ const AdminProducts = () => {
                             </div>
                         )}
 
-                        <div className="flex gap-3 mt-4">
+                        <div className="flex flex-col sm:flex-row gap-3 mt-4">
 
                             <button
                                 onClick={handleUpdate}
-                                className="bg-green-500 text-white px-4 py-2 rounded"
+                                className="bg-green-500 text-white px-4 py-2 rounded w-full"
                             >
                                 Save
                             </button>
 
                             <button
                                 onClick={() => setEditingProduct(null)}
-                                className="bg-gray-500 text-white px-4 py-2 rounded"
+                                className="bg-gray-500 text-white px-4 py-2 rounded w-full"
                             >
                                 Cancel
                             </button>
@@ -339,7 +339,7 @@ const AdminProducts = () => {
             {showAddModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
 
-                    <div className="bg-white p-6 rounded-lg w-[500px]">
+                    <div className="bg-white p-4 sm:p-6 rounded-lg w-[95%] sm:w-[500px] max-h-[90vh] overflow-y-auto">
 
                         <h2 className="text-2xl font-bold mb-4">
                             Add Product
@@ -387,18 +387,18 @@ const AdminProducts = () => {
                             className="border p-2 w-full mb-3"
                         />
 
-                        <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
 
                             <button
                                 onClick={handleAddProduct}
-                                className="bg-green-500 text-white px-4 py-2 rounded"
+                                className="bg-green-500 text-white px-4 py-2 rounded w-full"
                             >
                                 Add Product
                             </button>
 
                             <button
                                 onClick={() => setShowAddModal(false)}
-                                className="bg-gray-500 text-white px-4 py-2 rounded"
+                                className="bg-gray-500 text-white px-4 py-2 rounded w-full"
                             >
                                 Cancel
                             </button>

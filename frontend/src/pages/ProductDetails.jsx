@@ -25,49 +25,54 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  // 🔥 CHECK IF ALREADY IN CART
   const isInCart = product
     ? cart.some((item) => item._id === product._id)
     : false;
 
-  // ⏳ LOADING STATE
   if (loading) {
-    return <div className="p-10 text-xl">Loading product...</div>;
+    return (
+      <div className="p-4 sm:p-6 md:p-10 text-lg sm:text-xl">
+        Loading product...
+      </div>
+    );
   }
 
-  // ❌ ERROR STATE
   if (!product) {
-    return <div className="p-10 text-red-500">Product not found</div>;
+    return (
+      <div className="p-4 sm:p-6 md:p-10 text-red-500 text-lg">
+        Product not found
+      </div>
+    );
   }
 
   return (
-    <div className="p-10 grid md:grid-cols-2 gap-10 bg-gray-50 min-h-screen">
+    <div className="p-4 sm:p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 bg-gray-50 min-h-screen">
 
       {/* IMAGE */}
-      <div className="bg-white p-4 rounded shadow">
+      <div className="bg-white p-4 rounded-lg shadow">
         <img
           src={
             product.image
-              ? `http://localhost:5000/uploads/${product.image}`
+              ? `https://e-commerce-final-7ocn.onrender.com/uploads/${product.image}`
               : "https://via.placeholder.com/400"
           }
-           className="w-full max-h-[400px] object-contain  rounded"
+          className="w-full h-[250px] sm:h-[350px] md:max-h-[500px] object-contain rounded"
           alt={product.title}
         />
       </div>
 
       {/* DETAILS */}
-      <div className="bg-white p-6 rounded shadow">
+      <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
 
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-2xl sm:text-3xl font-bold">
           {product.title}
         </h1>
 
-        <p className="text-gray-600 mt-4">
+        <p className="text-gray-600 mt-4 text-sm sm:text-base break-words">
           {product.description}
         </p>
 
-        <p className="text-2xl font-bold mt-4 text-green-600">
+        <p className="text-2xl sm:text-3xl font-bold mt-4 text-green-600">
           ₹ {product.price}
         </p>
 
@@ -93,6 +98,7 @@ const ProductDetails = () => {
         </button>
 
       </div>
+
     </div>
   );
 };

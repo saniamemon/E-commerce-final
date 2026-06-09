@@ -11,18 +11,17 @@ const Checkout = () => {
     name: "",
     phone: "",
     address: "",
-    paymentMethod: "COD", // ✅ DEFAULT SELECTED
+    paymentMethod: "COD",
   });
 
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setError(""); // remove error while typing
+    setError("");
   };
 
   const placeOrder = async () => {
-    // ❌ VALIDATION
     if (
       form.name.trim() === "" ||
       form.phone.trim() === "" ||
@@ -32,7 +31,6 @@ const Checkout = () => {
       return;
     }
 
-    // optional phone validation
     if (form.phone.length !== 10) {
       setError("Please enter valid 10-digit phone number");
       return;
@@ -62,72 +60,80 @@ const Checkout = () => {
   };
 
   return (
-    <div className="p-6 max-w-xl mx-auto bg-white shadow rounded mt-10">
+    <div className="min-h-screen bg-gray-100 px-4 py-6 sm:px-6">
 
-      <h1 className="text-2xl font-bold mb-5">Checkout</h1>
+      <div className="max-w-xl mx-auto bg-white shadow rounded-lg p-4 sm:p-6 md:p-8">
 
-      {/* ERROR MESSAGE */}
-      {error && (
-        <div className="bg-red-100 text-red-700 p-2 mb-3 rounded">
-          {error}
+        <h1 className="text-2xl sm:text-3xl font-bold mb-5 text-center sm:text-left">
+          Checkout
+        </h1>
+
+        {/* ERROR MESSAGE */}
+        {error && (
+          <div className="bg-red-100 text-red-700 p-3 mb-4 rounded text-sm sm:text-base">
+            {error}
+          </div>
+        )}
+
+        {/* NAME */}
+        <input
+          name="name"
+          placeholder="Enter Name"
+          value={form.name}
+          onChange={handleChange}
+          className="border p-3 w-full mb-3 rounded"
+        />
+
+        {/* PHONE */}
+        <input
+          name="phone"
+          placeholder="Enter Phone Number"
+          value={form.phone}
+          onChange={handleChange}
+          className="border p-3 w-full mb-3 rounded"
+        />
+
+        {/* ADDRESS */}
+        <textarea
+          name="address"
+          placeholder="Enter Address"
+          value={form.address}
+          onChange={handleChange}
+          className="border p-3 w-full mb-3 rounded min-h-[100px]"
+        />
+
+        {/* PAYMENT METHOD */}
+        <div className="mb-4">
+          <h2 className="font-semibold mb-2">
+            Payment Method
+          </h2>
+
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="COD"
+              checked={form.paymentMethod === "COD"}
+              onChange={handleChange}
+            />
+            Cash on Delivery (COD)
+          </label>
         </div>
-      )}
 
-      {/* NAME */}
-      <input
-        name="name"
-        placeholder="Enter Name"
-        value={form.name}
-        onChange={handleChange}
-        className="border p-2 w-full mb-3"
-      />
+        {/* TOTAL */}
+        <h2 className="text-lg sm:text-xl font-bold mb-4">
+          Total: ₹ {totalPrice}
+        </h2>
 
-      {/* PHONE */}
-      <input
-        name="phone"
-        placeholder="Enter Phone Number"
-        value={form.phone}
-        onChange={handleChange}
-        className="border p-2 w-full mb-3"
-      />
+        {/* BUTTON */}
+        <button
+          onClick={placeOrder}
+          className="bg-black text-white w-full py-3 rounded hover:bg-gray-800 transition"
+        >
+          Place Order
+        </button>
 
-      {/* ADDRESS */}
-      <textarea
-        name="address"
-        placeholder="Enter Address"
-        value={form.address}
-        onChange={handleChange}
-        className="border p-2 w-full mb-3"
-      />
-
-      {/* PAYMENT METHOD */}
-      <div className="mb-4">
-        <h2 className="font-semibold mb-2">Payment Method</h2>
-
-        <label className="flex items-center gap-2">
-          <input
-            type="radio"
-            name="paymentMethod"
-            value="COD"
-            checked={form.paymentMethod === "COD"}
-            onChange={handleChange}
-          />
-          Cash on Delivery (COD)
-        </label>
       </div>
-
-      {/* TOTAL */}
-      <h2 className="text-lg font-bold mb-4">
-        Total: ₹ {totalPrice}
-      </h2>
-
-      {/* BUTTON */}
-      <button
-        onClick={placeOrder}
-        className="bg-black text-white w-full py-2 rounded hover:bg-gray-800"
-      >
-        Place Order
-      </button>
 
     </div>
   );

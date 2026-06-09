@@ -26,24 +26,26 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
 
-      <div className="bg-white p-8 rounded shadow w-96">
+      <div className="bg-white p-5 sm:p-8 rounded-lg shadow-md w-full max-w-md">
 
-        <h1 className="text-2xl font-bold mb-4">Register</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-5 text-center">
+          Register
+        </h1>
 
         <input
           name="name"
           placeholder="Name"
           onChange={handleChange}
-          className="w-full border p-2 mb-3"
+          className="w-full border p-3 mb-3 rounded"
         />
 
         <input
           name="email"
           placeholder="Email"
           onChange={handleChange}
-          className="w-full border p-2 mb-3"
+          className="w-full border p-3 mb-3 rounded"
         />
 
         <input
@@ -51,22 +53,28 @@ const Register = () => {
           type="password"
           placeholder="Password"
           onChange={handleChange}
-          className="w-full border p-2 mb-3"
+          className="w-full border p-3 mb-3 rounded"
         />
 
         <button
           onClick={handleSubmit}
-          className="w-full bg-black text-white py-2"
+          className="w-full bg-black text-white py-3 rounded hover:bg-gray-800 transition"
         >
           Register
         </button>
 
-        <p className="mt-3 text-sm">
+        <p className="mt-4 text-sm sm:text-base text-center">
           Already have an account?
-          <Link to="/login" className="text-blue-500"> Login</Link>
+          <Link
+            to="/login"
+            className="text-blue-500 hover:text-blue-700"
+          >
+            {" "}Login
+          </Link>
         </p>
 
       </div>
+
     </div>
   );
 };

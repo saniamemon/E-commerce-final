@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://e-commerce-final-7ocn.onrender.com/api",
 });
 
 export default axiosInstance;
